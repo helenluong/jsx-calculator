@@ -1,105 +1,50 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const Index = () => {
-    const [equation, setEquation] = useState('');
-    const [result, setResult] = useState('')
-    // const [myArr, setMyArr] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-    const [myLoopArr, setMyLoopArr] = useState([])
+    const [myArr, setMyArr] = useState(
+        // [1,2,3,4,5,6]
+        [
+            {
+                productName: 'Iphone 11',
+                price: '$1000',
+                imgULR: 'https://znews-photo.zingcdn.me/w660/Uploaded/yqdlcqrwq/2022_08_08/07607082022.jpeg'
+            },
+            {
+                productName: 'Iphone 13',
+                price: '$1000',
+                imgULR: 'https://znews-photo.zingcdn.me/w660/Uploaded/yqdlcqrwq/2022_08_08/07607082022.jpeg'
 
-    function createNumber(e) {
-        let myArr = []
+            },
+            {
+                productName: 'Iphone 15',
+                price: '$1000',
+                imgULR: 'https://znews-photo.zingcdn.me/w660/Uploaded/yqdlcqrwq/2022_08_08/07607082022.jpeg'
 
-        for (let i = 0; i < 11; i++) { //loop condition
-            if (i < 10) { //if else condition
-                myArr.push(i)
             }
-            else if (i < 11) {
-                myArr.push('+')
-                myArr.push('-')
-                myArr.push('*')
-                myArr.push('/')
-            }
-        }
-        setMyLoopArr(myArr);
-        // console.log(equation.concat(e.target.value));
-        // setMyLoopArr(equation.concat(e.target.value))
-
-    }
-    // createNumber()
-    useEffect(() => {
-        createNumber()
-        //get data/render data
-        console.log("1");
-    }, [])
-
-    function getValue(e) {
-        setEquation(equation.concat(e.target.value))
-    }
-
-    // a = ''
-    // b = '1'
-    // c = ''
-    // c = a.concat(b)
-    function getResult() {
-        setResult(eval(equation))
-
-    }
-    // eval('console.log('Hello')')
-
-    // console.log('Hello')
-
-    // eval('1+1')
-    // 1 + 1
-
-    function getValueTo0() {
-        console.log(0);
-        setEquation('')
-        setResult('0')
-    }
-
+        ]
+    )
     return (
         <div>
-            <h3>EQUATION: {equation}</h3>
-            <h3>RESULT: {result}</h3>
+            <div className="row">
+                {
+                    myArr.map((item, index) => {
+                        return (
+                            <div className="col-3 m-1 bg-primary p-3">
+                                <h2>{item.productName}</h2>
+                                <img className="w-100" src="https://znews-photo.zingcdn.me/w660/Uploaded/yqdlcqrwq/2022_08_08/07607082022.jpeg" alt="" />
+                                <h3>{item.price}</h3>
+                                <button className="btn btn-success">Add to cart</button>
+                                
+                            </div>
+                        )
+                    })
+                }
 
-            {/* <button value='0'onClick={getValue}>0</button>
-            <button value='1'onClick={getValue}>1</button>
-            <button value='2'onClick={getValue}>2</button>
-            <button value='3'onClick={getValue}>3</button>
-            <button value='4'onClick={getValue}>4</button>
-            <button value='5'onClick={getValue}>5</button>
-            <button value='6'onClick={getValue}>6</button>
-            <button value='7'onClick={getValue}>7</button>
-            <button value='8'onClick={getValue}>8</button>
-            <button value='9'onClick={getValue}>9</button> */}
-            {/* <button value='+' onClick={getValue}>+</button>
-            <button value='-' onClick={getValue}>-</button>
-            <button value='*' onClick={getValue}>x</button>
-            <button value='/' onClick={getValue}>:</button> */}
-
-            {
-                myLoopArr.map((element, index) => {
-                    return (
-                        <button
-                            value={element} onClick={getValue}
-                            key={index} >
-                            {element}
-                        </button>)
-                })
-            }
-
-
-
-            <button onClick={getResult}>=</button>
-            <button onClick={getValueTo0}>VALUE 0</button>
-
-            {/* <button onClick={createNumber}>LoopNumber</button> */}
-
-            {/* agile method */}
-
+                <button className="btn btn-primary">Add a new item </button>
+            </div>
 
         </div>
     );
 };
 
-export default Index;
+export default Index
